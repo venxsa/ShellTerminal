@@ -64,6 +64,8 @@ object ShizukuHelper {
             val script = bin.child(RISH)
             context.assets.open(RISH).use { input -> script.outputStream().use { input.copyTo(it) } }
             script.setExecutable(true)
+            // Android 10+ forbids exec from app data, so `rish` typed by hand needs to go through sh
+            bin.child("shellrc").writeText("rish() { sh '${script.absolutePath}' \"\$@\"; }\n")
         }.onFailure { it.printStackTrace() }
     }
 }
