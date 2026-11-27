@@ -57,6 +57,7 @@ object MkSession {
                 "PKG=${packageName}",
                 "RISH_APPLICATION_ID=${packageName}",
                 "PKG_PATH=${applicationInfo.sourceDir}",
+                "ENV=${localBinDir().absolutePath}/shellrc",
                 "TMPDIR=${getTempDir(this).absolutePath}",
             )
 
